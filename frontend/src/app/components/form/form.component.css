@@ -1,0 +1,32 @@
+form {
+  margin-top: 1.5rem;
+}
+
+.input-description {
+  /* agora input muda com vw */
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  max-width: 300px;
+  color: #667085;
+  font-size: 0.95em;
+  position: relative;
+  min-width: 259px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.btn-ctn {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  border-radius: 5px;
+}

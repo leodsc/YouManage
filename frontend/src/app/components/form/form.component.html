@@ -1,0 +1,23 @@
+<form class="login--form-ctn" action="">
+  <label *ngFor="let content of data" class="input-description" for="">
+    <img
+      *ngIf="content.icon !== ''"
+      width="20"
+      height="20"
+      class="input-icon"
+      src="{{ content.icon }}"
+      alt=""
+    />
+    <input
+      class="input"
+      name="{{ content.name }}"
+      type="text"
+      placeholder="{{ content.placeholder }}"
+    />
+    {{ content.description }}
+  </label>
+  <div class="btn-ctn">
+    <button class="btn btn-info__style-1">Criar</button>
+    <button class="btn btn-success__style-1">Entrar</button>
+  </div>
+</form>

@@ -1,2 +1,3 @@
-# YouManage
-App para gerenciamento de funcionários de empresas
+## You Manage
+
+App para gerenciamento de equipes e funcionários de empresas.
