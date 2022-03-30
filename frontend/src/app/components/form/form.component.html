@@ -1,6 +1,7 @@
 <form class="login--form-ctn" action="">
   <label *ngFor="let content of data" class="input-description" for="">
     <img
+      (click)="showIconInfo()"
       *ngIf="content.icon !== ''"
       width="20"
       height="20"
@@ -8,6 +9,10 @@
       src="{{ content.icon }}"
       alt=""
     />
+    <div *ngIf="showInfo" class="icon-info-ctn">
+      <div class="info-arrow"></div>
+      <p class="icon-info">{{ info }}</p>
+    </div>
     <input
       class="input"
       name="{{ content.name }}"
