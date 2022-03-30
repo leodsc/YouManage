@@ -1,0 +1,40 @@
+<nav *ngIf="menuOpen" class="app-nav">
+  <select
+    class="selection"
+    (change)="changeSelection()"
+    #selection
+    name="selection"
+    id=""
+  >
+    <option
+      *ngFor="let selection of options.selections; let i = index"
+      [selected]="options.values[i] == 'Nome'"
+      value="{{ options.values[i] | lowercase }}"
+    >
+      {{ selection }}
+    </option>
+  </select>
+  <input
+    type="text"
+    class="nav--search"
+    placeholder="Pesquisar por{{ valueSelected | lowercase }}"
+  />
+  <label for="">Ordernar por</label>
+  <div class="nav--show-data-ctn">
+    <select class="selection" name="" id="">
+      <option value="maior">Maior</option>
+      <option value="menor">Menor</option>
+      <option value="a-z">A-Z</option>
+      <option value="z-a">Z-A</option>
+    </select>
+    <select class="selection" name="" id="">
+      <option
+        *ngFor="let selection of options.selections; let i = index"
+        [selected]="options.values[i] == 'Nome'"
+        value="{{ options.values[i] | lowercase }}"
+      >
+        {{ selection }}
+      </option>
+    </select>
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+.menu-ctn {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  height: 60px;
+}
+
+.line {
+  width: 40px;
+  height: 5px;
+  background-color: #444;
+  border-radius: 10px;
+  transition: 500ms all;
+}
+
+.line-animation-0 {
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.line-animation-2 {
+  position: absolute;
+  transform: rotate(-45deg);
+}

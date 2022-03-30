@@ -1,0 +1,28 @@
+header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.header--title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.header--total-employee {
+  padding: 0.25rem 0.5rem;
+  color: #6941c6;
+  background-color: #f9f5ff;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.home-page {
+  padding: 0 1rem;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
