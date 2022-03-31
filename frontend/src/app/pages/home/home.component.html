@@ -7,9 +7,9 @@
     alt=""
   />
   <h1 class="header--title">Funcionários</h1>
-  <p class="header--total-employee">100</p>
+  <p class="header--total-employee">{{ totalEmployees }}</p>
 </header>
 <main class="home-page">
   <app-navigation></app-navigation>
-  <app-table></app-table>
+  <app-table (totalEmployeesEvent)="receiveTotalEmployees($event)"></app-table>
 </main>

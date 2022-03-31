@@ -1,0 +1,59 @@
+.app--table {
+  overflow-x: auto;
+  max-width: 100vw;
+  border-collapse: collapse;
+}
+
+.fix {
+  position: fixed;
+}
+
+section {
+  overflow-x: auto;
+}
+
+tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+th {
+  padding: 0.7rem;
+  color: #667085;
+  font-weight: 500;
+}
+
+.table--column-name {
+  background-color: #f9fafb;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  max-height: 1px;
+}
+
+.employee-image {
+  border-radius: 100%;
+}
+
+.data-cell {
+  padding: 1rem;
+}
+
+.data-cell:not(.name) {
+  white-space: nowrap;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pages {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pages--btn {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}

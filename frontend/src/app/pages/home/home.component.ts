@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  constructor(private cd: ChangeDetectorRef) {}
 
-  constructor() { }
+  totalEmployees?: number;
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.cd.detectChanges();
   }
 
+  receiveTotalEmployees($event: any) {
+    this.totalEmployees = $event;
+  }
 }
