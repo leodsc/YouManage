@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ManagerRepository extends JpaRepository<ManagerModel, Long> {
 
     Optional<ManagerModel> findByToken(String token);
+    Optional<ManagerModel> findByNameContainingIgnoreCase(String name);
 }

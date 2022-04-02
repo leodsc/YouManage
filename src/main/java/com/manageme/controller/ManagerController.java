@@ -7,6 +7,7 @@ import com.manageme.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<ManagerModel> getAll() {
         return managerService.getAll();
     }
@@ -27,6 +28,11 @@ public class ManagerController {
     public ResponseEntity<String> createManager(@RequestBody ManagerModel manager) {
         HttpStatus status = managerService.create(manager);
         return ResponseEntity.status(status).body("Gerente criado!");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> loginManager(@RequestBody ManagerModel manager) {
+        return managerService.login(manager);
     }
 
 //    @PutMapping("/update")

@@ -20,6 +20,7 @@ public class EmployeeController {
 
     @GetMapping
     public List<EmployeeModel> getAllEmployees() {
+        System.out.println("oi");
         return employeeService.getAll();
     }
 
