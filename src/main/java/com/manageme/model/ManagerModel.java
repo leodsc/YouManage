@@ -10,14 +10,17 @@ public class ManagerModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @NotNull
-    public String name;
+    private String name;
+
+    @NotNull
+    private String password;
 
     @NotNull
     @OneToMany(mappedBy = "manager", cascade=CascadeType.ALL)
-    public List<EmployeeModel> employees;
+    private List<EmployeeModel> employees;
 
     public String token;
 
@@ -35,6 +38,22 @@ public class ManagerModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<EmployeeModel> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<EmployeeModel> employees) {
+        this.employees = employees;
     }
 
     public String getToken() {

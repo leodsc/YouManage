@@ -8,6 +8,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   constructor(private cd: ChangeDetectorRef) {}
 
+  menuOpen: boolean = false;
   totalEmployees?: number;
 
   ngOnInit(): void {}
@@ -18,5 +19,9 @@ export class HomeComponent implements OnInit {
 
   receiveTotalEmployees($event: any) {
     this.totalEmployees = $event;
+  }
+
+  toggleSearch() {
+    this.menuOpen = !this.menuOpen;
   }
 }

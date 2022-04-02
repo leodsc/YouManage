@@ -1,4 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { faker } from '@faker-js/faker';
 import Options from 'src/app/classes/Options';
 import { DataService } from 'src/app/services/data.service';
@@ -9,6 +15,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
+  rowsSelected: any;
   EMPLOYEES_PER_PAGE = 10;
   lines: number[] = Array(10).fill(0);
   columnsName: string[] = Object.values(Options);
@@ -20,6 +27,7 @@ export class TableComponent implements OnInit {
     .map((_, index) => index + 1);
   totalEmployees: number = this.data.length;
   @Output() totalEmployeesEvent = new EventEmitter<number>();
+  @ViewChild('#rowInput') rowInput: any;
 
   resolution?: number;
   constructor(private dataService: DataService) {}
@@ -53,6 +61,12 @@ export class TableComponent implements OnInit {
       ]);
     }
     return data;
+  }
+
+  clickAll() {
+    this.rowsSelected = 'all';
+    // console.log(this.rowInput);
+    // this.rowInput.nativeElement.setAttributes('checked');
   }
 
   randomPhoto(): string {

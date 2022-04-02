@@ -1,15 +1,17 @@
 <header>
   <!-- <app-menu></app-menu> -->
-  <img
-    width="50"
-    height="50"
-    src="https://cdn-icons.flaticon.com/png/512/2319/premium/2319177.png?token=exp=1648672062~hmac=6b3cdd01bd052fcfe9d8e4bcd67bdb95"
-    alt=""
-  />
+  <button (click)="toggleSearch()">
+    <img
+      width="50"
+      height="50"
+      src="https://cdn-icons.flaticon.com/png/512/2319/premium/2319177.png?token=exp=1648672062~hmac=6b3cdd01bd052fcfe9d8e4bcd67bdb95"
+      alt=""
+    />
+  </button>
   <h1 class="header--title">Funcionários</h1>
   <p class="header--total-employee">{{ totalEmployees }}</p>
 </header>
 <main class="home-page">
-  <app-navigation></app-navigation>
+  <app-navigation [menuOpen]="menuOpen"></app-navigation>
   <app-table (totalEmployeesEvent)="receiveTotalEmployees($event)"></app-table>
 </main>
