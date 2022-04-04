@@ -1,28 +1,56 @@
 <form class="login--form-ctn" action="">
-  <label *ngFor="let content of data" class="input-description" for="">
+  <!-- <app-input *ngFor="let content of data" [content]="content"></app-input> -->
+  <label class="input-description" for="{{ data[0].name }}">
     <img
       (click)="showIconInfo()"
-      *ngIf="content.icon !== ''"
+      *ngIf="data[0].icon !== ''"
       width="20"
       height="20"
       class="input-icon"
-      src="{{ content.icon }}"
+      src="{{ data[0].icon }}"
       alt=""
     />
-    <div *ngIf="showInfo" class="icon-info-ctn">
+    <div #cardInfo *ngIf="showInfo" class="icon-info-ctn">
       <div class="info-arrow"></div>
-      <p class="icon-info">{{ info }}</p>
+      <p class="icon-info">{{ data[0].iconDescription }}</p>
     </div>
     <input
+      [(ngModel)]="manager.name"
       class="input"
-      name="{{ content.name }}"
-      type="text"
-      placeholder="{{ content.placeholder }}"
+      id="{{ data[0].name }}"
+      name="{{ data[0].name }}"
+      type="{{ data[0].type }}"
+      placeholder="{{ data[0].placeholder }}"
     />
-    {{ content.description }}
+    {{ data[0].description }}
   </label>
+  <label class="input-description" for="{{ data[1].name }}">
+    <img
+      (click)="showIconInfo()"
+      *ngIf="data[1].icon !== ''"
+      width="20"
+      height="20"
+      class="input-icon"
+      src="{{ data[1].icon }}"
+      alt=""
+    />
+    <div #cardInfo *ngIf="showInfo" class="icon-info-ctn">
+      <div class="info-arrow"></div>
+      <p class="icon-info">{{ data[1].iconDescription }}</p>
+    </div>
+    <input
+      [(ngModel)]="manager.password"
+      class="input"
+      id="{{ data[1].name }}"
+      name="{{ data[1].name }}"
+      type="{{ data[1].type }}"
+      placeholder="{{ data[1].placeholder }}"
+    />
+    {{ data[1].description }}
+  </label>
+
   <div class="btn-ctn">
     <button class="btn btn-info__style-1">Criar</button>
-    <button class="btn btn-success__style-1">Entrar</button>
+    <button class="btn btn-success__style-1" (click)="login()">Entrar</button>
   </div>
 </form>

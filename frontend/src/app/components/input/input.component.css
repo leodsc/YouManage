@@ -1,18 +1,3 @@
-form {
-  margin-top: 1.5rem;
-}
-
-.btn-ctn {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.btn {
-  border-radius: 5px;
-}
-
 .icon-info {
   position: absolute;
   width: 70%;

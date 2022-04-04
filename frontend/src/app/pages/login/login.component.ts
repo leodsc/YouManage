@@ -7,14 +7,14 @@ import Label from 'src/app/classes/Label';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  inputs: Label[] = [
-    new Label(
-      'Nome',
-      'name',
-      'assets/help-circle.svg',
-      'Insira aqui o nome do gerente.'
-    ),
-  ];
+  // inputs: Label[] = [
+  //   new Label(
+  //     'Nome',
+  //     'name',
+  //     'assets/help-circle.svg',
+  //     'Insira aqui o nome do gerente.'
+  //   ),
+  // ];
 
   constructor() {}
 
