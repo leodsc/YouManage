@@ -26,3 +26,8 @@ header {
   flex-direction: column;
   align-items: center; */
 }
+
+.btn-ctn {
+  display: flex;
+  gap: 5rem;
+}

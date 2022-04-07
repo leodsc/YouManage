@@ -52,3 +52,17 @@ form {
   right: 10px;
   transform: rotate(45deg);
 }
+
+@media (min-width: 768px) {
+  input {
+    font-size: 24px;
+  }
+
+  .input-description {
+    font-size: 20px;
+  }
+
+  .btn {
+    font-size: 24px;
+  }
+}

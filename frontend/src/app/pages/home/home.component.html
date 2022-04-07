@@ -1,16 +1,25 @@
 <header>
   <!-- <app-menu></app-menu> -->
-  <button (click)="toggleSearch()">
+  <!-- <button (click)="toggleSearch()">
     <img
       width="50"
       height="50"
       src="https://cdn-icons.flaticon.com/png/512/2319/premium/2319177.png?token=exp=1648672062~hmac=6b3cdd01bd052fcfe9d8e4bcd67bdb95"
       alt=""
     />
-  </button>
+  </button> -->
+  <div *ngIf="resolution > 992" class="btn-ctn">
+    <button class="btn-success__style-1" (click)="modal()">Adicionar</button>
+    <button class="btn-danger__style-1">Excluir</button>
+    <button class="btn-info__style-1" (click)="logout()">Sair</button>
+  </div>
   <h1 class="header--title">Funcionários</h1>
   <p class="header--total-employee">{{ totalEmployees }}</p>
 </header>
+<app-modal
+  (closeModalEvent)="receiveModal($event)"
+  *ngIf="showModal"
+></app-modal>
 <main class="home-page">
   <app-navigation [menuOpen]="menuOpen"></app-navigation>
   <app-table (totalEmployeesEvent)="receiveTotalEmployees($event)"></app-table>

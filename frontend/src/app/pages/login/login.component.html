@@ -1,7 +1,10 @@
 <main class="login-page">
   <section class="login">
+    <p class="message" *ngIf="message.message !== ''">
+      {{ message.message }}
+    </p>
     <h2 class="login--title">Entrar</h2>
     <img src="assets/user-login.svg" alt="" />
-    <app-form></app-form>
+    <app-form (messageEvent)="receiveMessage($event)"></app-form>
   </section>
 </main>

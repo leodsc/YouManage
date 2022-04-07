@@ -1,7 +1,7 @@
 <form class="login--form-ctn" action="">
   <!-- <app-input *ngFor="let content of data" [content]="content"></app-input> -->
   <label class="input-description" for="{{ data[0].name }}">
-    <img
+    <!-- <img
       (click)="showIconInfo()"
       *ngIf="data[0].icon !== ''"
       width="20"
@@ -13,7 +13,7 @@
     <div #cardInfo *ngIf="showInfo" class="icon-info-ctn">
       <div class="info-arrow"></div>
       <p class="icon-info">{{ data[0].iconDescription }}</p>
-    </div>
+    </div> -->
     <input
       [(ngModel)]="manager.name"
       class="input"
@@ -25,7 +25,7 @@
     {{ data[0].description }}
   </label>
   <label class="input-description" for="{{ data[1].name }}">
-    <img
+    <!-- <img
       (click)="showIconInfo()"
       *ngIf="data[1].icon !== ''"
       width="20"
@@ -34,10 +34,10 @@
       src="{{ data[1].icon }}"
       alt=""
     />
-    <div #cardInfo *ngIf="showInfo" class="icon-info-ctn">
+    <div #cardInfo *ngIf="showInfo === 'password'" class="icon-info-ctn">
       <div class="info-arrow"></div>
       <p class="icon-info">{{ data[1].iconDescription }}</p>
-    </div>
+    </div> -->
     <input
       [(ngModel)]="manager.password"
       class="input"
@@ -50,7 +50,7 @@
   </label>
 
   <div class="btn-ctn">
-    <button class="btn btn-info__style-1">Criar</button>
+    <button class="btn btn-info__style-1" (click)="create()">Criar</button>
     <button class="btn btn-success__style-1" (click)="login()">Entrar</button>
   </div>
 </form>

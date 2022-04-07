@@ -4,8 +4,10 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  HostListener,
 } from '@angular/core';
 import { faker } from '@faker-js/faker';
+import { Message } from 'src/app/classes/Message';
 import Options from 'src/app/classes/Options';
 import { DataService } from 'src/app/services/data.service';
 
@@ -14,23 +16,28 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent extends Message implements OnInit {
+  showModal: boolean = true;
+  modalContent = {
+    title: '',
+  };
   rowsSelected: any;
   EMPLOYEES_PER_PAGE = 10;
   lines: number[] = Array(10).fill(0);
   columnsName: string[] = Object.values(Options);
-  data: any[][] = this.loadData();
+  data: any[][] = [[]];
   currentPage: number = 1;
   totalPages: number = Math.ceil(this.data.length / this.EMPLOYEES_PER_PAGE);
   pages: number[] = Array(this.totalPages)
     .fill(0)
     .map((_, index) => index + 1);
-  totalEmployees: number = this.data.length;
+  totalEmployees: number = this.data.length - 1;
   @Output() totalEmployeesEvent = new EventEmitter<number>();
   @ViewChild('#rowInput') rowInput: any;
 
-  resolution?: number;
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.sendTotalEmployees();
@@ -71,5 +78,17 @@ export class TableComponent implements OnInit {
 
   randomPhoto(): string {
     return faker.image.people(undefined, undefined, true);
+  }
+
+  addNewEmployee() {
+    this.modalContent.title = 'Adicionar novo card';
+    this.showModal = !this.showModal;
+  }
+
+  removeEmployee() {}
+
+  receiveModal(message: string) {
+    this.changeMessage(message, 3000);
+    this.showModal = false;
   }
 }

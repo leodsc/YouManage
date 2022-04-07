@@ -13,6 +13,9 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { TableComponent } from './components/table/table.component';
 import { InputComponent } from './components/input/input.component';
 import { FormsModule } from '@angular/forms';
+import { TestComponent } from './pages/test/test.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { FormsModule } from '@angular/forms';
     NavigationComponent,
     TableComponent,
     InputComponent,
+    TestComponent,
+    AvatarComponent,
+    ModalComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

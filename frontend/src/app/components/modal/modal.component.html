@@ -1,0 +1,108 @@
+<div class="modal">
+  <h2 class="modal--title">Adicionar Novo Funcionário</h2>
+  <form action="">
+    <label for="name">
+      <input
+        [(ngModel)]="employee.name"
+        placeholder="Nome"
+        type="text"
+        id="name"
+        name="name"
+      />
+    </label>
+    <label for="salary">
+      <input
+        [(ngModel)]="employee.salary"
+        placeholder="Salário"
+        type="number"
+        id="salary"
+        name="salary"
+      />
+    </label>
+    <label for="email">
+      <input
+        [(ngModel)]="employee.email"
+        placeholder="Email"
+        type="email"
+        id="email"
+        name="email"
+      />
+    </label>
+    <label for="phone">
+      <input
+        [(ngModel)]="employee.phone"
+        placeholder="Telefone"
+        type="number"
+        id="phone"
+        name="phone"
+      />
+    </label>
+    <label for="address">
+      <input
+        [(ngModel)]="employee.address"
+        placeholder="Endereço"
+        type="text"
+        id="address"
+        name="address"
+      />
+    </label>
+    <label for="cpf">
+      <input
+        [(ngModel)]="employee.cpf"
+        placeholder="CPF"
+        type="number"
+        id="cpf"
+        name="cpf"
+      />
+    </label>
+    <label for="department">
+      <input
+        [(ngModel)]="employee.department"
+        placeholder="Departamento"
+        type="text"
+        id="department"
+        name="department"
+      />
+    </label>
+    <label for="team">
+      <input
+        [(ngModel)]="employee.team"
+        placeholder="Time"
+        type="text"
+        id="team"
+        name="team"
+      />
+    </label>
+    <label for="hiringDate">
+      Data de Contratação
+      <input
+        [(ngModel)]="employee.hiringDate"
+        type="date"
+        id="hiringDate"
+        name="hiringDate"
+      />
+    </label>
+    <label for="birthday">
+      Data de Nascimento
+      <input
+        [(ngModel)]="employee.birthday"
+        type="date"
+        id="birthday"
+        name="birthday"
+      />
+    </label>
+  </form>
+  <div class="btn-ctn">
+    <button (click)="addEmployee()" type="button" class="btn-success__style-1">
+      Adicionar
+    </button>
+    <button
+      (click)="sendModalStatus('')"
+      type="button btn-danger"
+      class="btn-danger__style-1"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>
+<div class="hide-background-content"></div>

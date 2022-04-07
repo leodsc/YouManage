@@ -2,6 +2,7 @@
   overflow-x: auto;
   max-width: 100vw;
   border-collapse: collapse;
+  min-width: 100vw;
 }
 
 .flex {
@@ -65,4 +66,15 @@ input[type="checkbox"] {
 .pages--btn {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+}
+
+.btn-ctn {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .special-btn {
+    display: none;
+  }
 }

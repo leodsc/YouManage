@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import Label from 'src/app/classes/Label';
+import { Message } from 'src/app/classes/Message';
+import { Colors } from 'src/app/classes/MessageColors';
 import { Manager } from 'src/app/models/Manager';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment.prod';
@@ -13,7 +14,8 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class FormComponent implements OnInit {
   manager: Manager = new Manager();
-  showInfo: boolean = false;
+  @Output() messageEvent = new EventEmitter<Message>();
+  // showInfo: string = '';
   // TODO: refatorar para receber do pai
   data: Label[] = [
     new Label(
@@ -39,40 +41,57 @@ export class FormComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    window.addEventListener('click', (e: any) => {
-      let isClickOnIcon = e.target.tagName === 'IMG';
-      if (this.showInfo && !isClickOnIcon) {
-        this.showInfo = false;
-        environment.currentIconOpen = '';
-      }
-    });
+    // window.addEventListener('click', (e: any) => {
+    //   let isClickOnIcon = e.target.tagName === 'IMG';
+    //   if (this.showInfo && !isClickOnIcon) {
+    //     this.showInfo = '';
+    //     environment.currentIconOpen = '';
+    //   }
+    // });
   }
 
-  show(state: boolean) {
-    this.showInfo = state;
-  }
+  // show(state: boolean) {
+  //   this.showInfo = state;
+  // }
 
   showIconInfo(): void {
-    const closeThisInputInfo = environment.currentIconOpen === this;
-    const closeAnotherInputInfo = environment.currentIconOpen != '';
+    // const closeThisInputInfo = environment.currentIconOpen === this;
+    // const closeAnotherInputInfo = environment.currentIconOpen != '';
+    // if (closeThisInputInfo) {
+    //   environment.currentIconOpen = '';
+    //   this.show(false);
+    // } else if (closeAnotherInputInfo) {
+    //   environment.currentIconOpen.show(false);
+    //   this.showInfo = !this.showInfo;
+    //   // open a new input info if there isnt any input info opened
+    // } else {
+    //   this.showInfo = !this.showInfo;
+    //   environment.currentIconOpen = this;
+    // }
+  }
 
-    if (closeThisInputInfo) {
-      environment.currentIconOpen = '';
-      this.show(false);
-    } else {
-      if (closeAnotherInputInfo) {
-        environment.currentIconOpen.show(false);
+  login = () => {
+    const message = new Message();
+    this.auth.login(this.manager).subscribe(
+      (resp: Manager) => {
+        this.manager = resp;
+        environment.token = 'a';
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        if (error.status === 404) {
+          message.message = 'Gerente não encontrado!';
+          message.time = 4000;
+          message.color = Colors.DANGER;
+          this.messageEvent.emit(message);
+        }
       }
-      // open a new input info if there isnt any input info opened
-      this.show(true);
-      environment.currentIconOpen = this;
-    }
-  }
+    );
+  };
 
-  login() {
-    this.auth.login(this.manager).subscribe((resp: Manager) => {
-      this.manager = resp;
-      this.router.navigate(['/home']);
+  create = () => {
+    this.auth.create(this.manager).subscribe((resp: string) => {
+      // this.messageEvent.emit([resp, 3000]);
     });
-  }
+  };
 }

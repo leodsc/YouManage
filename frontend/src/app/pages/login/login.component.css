@@ -1,7 +1,27 @@
 .login-page {
   height: 100%;
   width: 100%;
-  background: url("/assets/login-background.svg") no-repeat;
+  /* background: url("/assets/login-background.svg") no-repeat;
+   */
+  background: linear-gradient(
+      180deg,
+      #82a0d5 0%,
+      #939fd9 7.14%,
+      #a69edb 14.29%,
+      #b99cda 21.43%,
+      #cc99d6 28.57%,
+      #dd97d0 35.71%,
+      #ed96c7 42.86%,
+      #fa95bc 50%,
+      #ff95b0 57.14%,
+      #ff98a2 64.29%,
+      #ff9c94 71.43%,
+      #ffa286 78.57%,
+      #ffaa78 85.71%,
+      #ffb26c 92.86%,
+      #ffbc63 100%
+    ),
+    #ffffff;
   background-size: center;
   display: flex;
   justify-content: center;
@@ -24,4 +44,29 @@
   font-weight: 400;
   font-size: 2.5em;
   margin-bottom: 1rem;
+}
+
+.message {
+  max-width: 300px;
+  background-color: #dc3545;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .message {
+    font-size: 24px;
+    max-width: 500px;
+  }
+
+  img {
+    width: 150px;
+  }
+
+  .login {
+    width: 500px;
+  }
 }
