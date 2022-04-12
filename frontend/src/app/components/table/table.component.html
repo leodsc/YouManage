@@ -7,7 +7,7 @@
     (closeModalEvent)="receiveModal($event)"
     *ngIf="showModal"
   ></app-modal>
-  <div *ngIf="message !== ''">{{ message }}</div>
+  <!-- <div *ngIf="message !== ''">{{ message }}</div> -->
   <table class="app--table">
     <tr class="table--column-name">
       <th [class.flex]="column == 'Nome'" *ngFor="let column of columnsName">
@@ -17,15 +17,20 @@
     </tr>
     <tr
       class="row table--employee-info"
-      *ngFor="let line of lines; let i = index"
+      *ngFor="let employee of employees; let i = index"
     >
       <td
         style="width: 250px"
         class="data-cell"
-        *ngFor="let content of data[i]; let j = index"
+        *ngFor="let data of objectValues(employee); let j = index"
         [class.name]="j == 0"
       >
-        <input #rowInput *ngIf="j === 0" type="checkbox" />
+        <input
+          #rowInput
+          [class.id]="employeesIds[i]"
+          *ngIf="j === 0"
+          type="checkbox"
+        />
         <!-- <img
           class="employee-image"
           width="50"
@@ -34,14 +39,14 @@
           src=""
           alt=""
         /> -->
-        <app-avatar *ngIf="j === 0" name="{{ content }}"></app-avatar>
-        {{ content }}
+        <!-- <app-avatar *ngIf="j === 0" name="{{ content }}"></app-avatar> -->
+        {{ data }}
       </td>
     </tr>
   </table>
 </section>
-<footer class="pages">
+<!-- <footer class="pages">
   <button class="pages--btn btn-previous">Anterior</button>
   <button *ngFor="let page of pages" class="page-number">{{ page }}</button>
   <button class="pages--btn btn-next">Próxima</button>
-</footer>
+</footer> -->

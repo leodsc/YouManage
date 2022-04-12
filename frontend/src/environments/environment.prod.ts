@@ -4,10 +4,14 @@ export const environment: {
   token: string;
   resolution: number;
   server: string;
+  id: number;
+  name?: string;
 } = {
   production: true,
   currentIconOpen: '',
   token: '',
   resolution: window.innerWidth,
   server: 'http://localhost:8080/',
+  id: -1,
+  name: '',
 };

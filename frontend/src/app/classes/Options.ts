@@ -6,7 +6,6 @@ enum Options {
   Endereco = 'Endereço',
   cpf = 'CPF',
   Departamento = 'Departamento',
-  Cargo = 'Cargo',
   Equipe = 'Equipe',
   Contratacao = 'Contratação',
   Gerente = 'Gerente',

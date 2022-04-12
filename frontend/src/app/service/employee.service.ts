@@ -10,12 +10,21 @@ import { Employee } from '../models/Employee';
 export class EmployeeService {
   constructor(private http: HttpClient) {}
 
-  create(employee: Employee): Observable<Employee> {
-    return this.http.post(environment.server + 'employee/create', employee, {
-      headers: {
-        Authorization:
-          'dGVzdGU6JDJhJDEwJHZXcy96aWtnM1FXeUdKc1ZCOEtoZ09ndTFSZ3VGWk9xYjhCZVpOdVY4YUF4NUpDSHM4ZHJp',
-      },
+  headers = {
+    Authorization: environment.token,
+  };
+
+  getAll(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(environment.server + 'employee', {
+      headers: { Authorization: environment.token },
     });
+  }
+
+  create(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(
+      environment.server + 'employee/create',
+      employee,
+      { headers: { Authorization: environment.token } }
+    );
   }
 }

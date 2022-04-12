@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Label from 'src/app/classes/Label';
 import { Message } from 'src/app/classes/Message';
+import { Colors } from 'src/app/classes/MessageColors';
 
 @Component({
   selector: 'app-login',
@@ -17,23 +18,30 @@ export class LoginComponent implements OnInit {
   //     'Insira aqui o nome do gerente.'
   //   ),
   // ];
-  message = new Message();
+  public message = Message;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // this.route.queryParams.forEach((query) => {
-    //   if (query['error'] === 'authentication') {
-    //     this.message =
-    //       'Você precisa entrar na sua conta antes de acessar os dados dos funcionários!';
-    //   } else if (query['info'] === 'logout') {
-    //     this.message = 'Você foi desconectado!';
-    //   }
-    // });
+    this.route.queryParams.forEach((query) => {
+      if (query['error'] === 'authentication') {
+        Message.setProperties(
+          'Você precisa entrar na sua conta antes de acessar os dados dos funcionários!',
+          6000,
+          Colors.DANGER
+        );
+      } else if (query['info'] === 'logout') {
+        Message.setProperties(
+          'Você saiu com sucesso da conta!',
+          4000,
+          Colors.SUCCESS
+        );
+      }
+      Message.toggleTimeout();
+    });
   }
 
-  receiveMessage(message: Message) {
-    this.message = message;
-    message.toggleTimeout();
+  receiveMessage() {
+    Message.toggleTimeout();
   }
 }

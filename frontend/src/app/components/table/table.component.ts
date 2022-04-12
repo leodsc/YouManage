@@ -9,6 +9,8 @@ import {
 import { faker } from '@faker-js/faker';
 import { Message } from 'src/app/classes/Message';
 import Options from 'src/app/classes/Options';
+import { Employee } from 'src/app/models/Employee';
+import { EmployeeService } from 'src/app/service/employee.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -31,17 +33,32 @@ export class TableComponent extends Message implements OnInit {
   pages: number[] = Array(this.totalPages)
     .fill(0)
     .map((_, index) => index + 1);
-  totalEmployees: number = this.data.length - 1;
+  totalEmployees: number;
+  employees: any[] = [];
+  employeesIds: any[] = [];
+  objectValues = Object.values;
+
   @Output() totalEmployeesEvent = new EventEmitter<number>();
   @ViewChild('#rowInput') rowInput: any;
 
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private employeeService: EmployeeService
+  ) {
     super();
   }
 
   ngOnInit(): void {
     this.sendTotalEmployees();
     this.dataService.listenToWindowWidth();
+    this.employeeService.getAll().subscribe((resp: Employee[]) => {
+      resp.forEach((employee) => {
+        this.employeesIds.push(employee.id);
+        delete employee.id;
+        this.employees.push(employee);
+      });
+      this.totalEmployees = this.employees.length - 1;
+    });
   }
 
   sendTotalEmployees() {

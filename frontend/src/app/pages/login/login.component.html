@@ -1,10 +1,14 @@
 <main class="login-page">
   <section class="login">
-    <p class="message" *ngIf="message.message !== ''">
-      {{ message.message }}
+    <p
+      class="message"
+      [ngStyle]="{ 'background-color': message.color }"
+      *ngIf="message.content !== ''"
+    >
+      {{ message.content }}
     </p>
     <h2 class="login--title">Entrar</h2>
     <img src="assets/user-login.svg" alt="" />
-    <app-form (messageEvent)="receiveMessage($event)"></app-form>
+    <app-form (messageEvent)="receiveMessage()"></app-form>
   </section>
 </main>

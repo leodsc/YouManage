@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class FormComponent implements OnInit {
   manager: Manager = new Manager();
-  @Output() messageEvent = new EventEmitter<Message>();
+  @Output() messageEvent = new EventEmitter();
   // showInfo: string = '';
   // TODO: refatorar para receber do pai
   data: Label[] = [
@@ -71,27 +71,32 @@ export class FormComponent implements OnInit {
   }
 
   login = () => {
-    const message = new Message();
     this.auth.login(this.manager).subscribe(
       (resp: Manager) => {
         this.manager = resp;
-        environment.token = 'a';
+        environment.token = resp.token;
+        environment.id = resp.id;
+        environment.name = resp.name;
         this.router.navigate(['/home']);
       },
       (error) => {
         if (error.status === 404) {
-          message.message = 'Gerente não encontrado!';
-          message.time = 4000;
-          message.color = Colors.DANGER;
-          this.messageEvent.emit(message);
+          Message.setProperties('Gerente não encontrado!', 4000, Colors.DANGER);
+          this.messageEvent.emit();
         }
       }
     );
   };
 
   create = () => {
-    this.auth.create(this.manager).subscribe((resp: string) => {
-      // this.messageEvent.emit([resp, 3000]);
-    });
+    this.auth.create(this.manager).subscribe(
+      (resp: Manager) => {
+        Message.setProperties('Gerente criado!', 5000, Colors.SUCCESS);
+      },
+      (error) => {
+        Message.setProperties(error.message, 5000, Colors.DANGER);
+      }
+    );
+    this.messageEvent.emit();
   };
 }

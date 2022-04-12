@@ -1,25 +1,27 @@
 import { Manager } from './Manager';
 
 export class Employee {
-  public name?: string;
+  public id?: number;
 
-  public salary?: number;
+  public name: string;
 
-  public phone?: number;
+  public salary: number;
 
-  public email?: string;
+  public phone: number;
 
-  public address?: string;
+  public email: string;
 
-  public cpf?: number;
+  public address: string;
 
-  public department?: string;
+  public cpf: number;
 
-  public team?: string;
+  public department: string;
 
-  public hiringDate?: Date;
+  public team: string;
 
-  public birthday?: Date;
+  public hiringDate: Date;
 
-  public manager?: Manager;
+  public birthday: Date;
+
+  public manager: Manager;
 }
