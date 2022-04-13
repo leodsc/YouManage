@@ -22,7 +22,7 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<ManagerModel> getAll() {
         return managerService.getAll();
     }
@@ -52,7 +52,7 @@ public class ManagerController {
 //
 //    }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public ResponseEntity<String> deleteManager(@RequestBody ManagerModel manager) {
         try {
             managerService.delete(manager);
@@ -61,4 +61,7 @@ public class ManagerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+//    @DeleteMapping("/employee")
+//    public ResponseEntity<List<Emplo>>
 }
