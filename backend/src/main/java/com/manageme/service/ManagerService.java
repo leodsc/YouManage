@@ -45,9 +45,9 @@ public class ManagerService {
         }
         userDetailsService.loadUserByUsername(manager.getName());
         String token = createBase64Token(manager);
-        manager.setPassword("");
-        manager.setToken("Basic " + token);
-        return ResponseEntity.ok().body(manager);
+//        manager.setPassword("");
+        dbManager.get().setToken("Basic " + token);
+        return ResponseEntity.ok().body(dbManager.get());
     }
 
     public List<ManagerModel> getAll() {
