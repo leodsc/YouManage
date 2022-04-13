@@ -4,7 +4,6 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  HostListener,
 } from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { Message } from 'src/app/classes/Message';
@@ -37,9 +36,14 @@ export class TableComponent extends Message implements OnInit {
   employees: any[] = [];
   employeesIds: any[] = [];
   objectValues = Object.values;
+  isClicked: boolean = false;
 
   @Output() totalEmployeesEvent = new EventEmitter<number>();
   @ViewChild('#rowInput') rowInput: any;
+  @Output() deleteEmployeeEvent = new EventEmitter<{
+    id: number;
+    checked: boolean;
+  }>();
 
   constructor(
     private dataService: DataService,
@@ -107,5 +111,12 @@ export class TableComponent extends Message implements OnInit {
   receiveModal(message: string) {
     this.changeMessage(message, 3000);
     this.showModal = false;
+  }
+
+  checkEmployee($event: any) {
+    this.deleteEmployeeEvent.emit({
+      id: $event.target.id,
+      checked: $event.target.checked,
+    });
   }
 }

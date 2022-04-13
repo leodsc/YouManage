@@ -10,7 +10,9 @@
   </button> -->
   <div *ngIf="resolution > 992" class="btn-ctn">
     <button class="btn-success__style-1" (click)="modal()">Adicionar</button>
-    <button class="btn-danger__style-1">Excluir</button>
+    <button class="btn-danger__style-1" (click)="deleteEmployee()">
+      Excluir
+    </button>
     <button class="btn-info__style-1" (click)="logout()">Sair</button>
   </div>
   <h1 class="header--title">Funcionários</h1>
@@ -22,5 +24,8 @@
 ></app-modal>
 <main class="home-page">
   <app-navigation [menuOpen]="menuOpen"></app-navigation>
-  <app-table (totalEmployeesEvent)="receiveTotalEmployees($event)"></app-table>
+  <app-table
+    (deleteEmployeeEvent)="receiveEmployeeToDelete($event)"
+    (totalEmployeesEvent)="receiveTotalEmployees($event)"
+  ></app-table>
 </main>

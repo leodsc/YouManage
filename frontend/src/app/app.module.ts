@@ -31,7 +31,7 @@ import { ModalComponent } from './components/modal/modal.component';
     InputComponent,
     TestComponent,
     AvatarComponent,
-    ModalComponent,
+    ModalComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

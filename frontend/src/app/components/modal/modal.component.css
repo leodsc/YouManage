@@ -49,6 +49,19 @@ input {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+label {
+  position: relative;
+}
+
+.required {
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: 25%;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .btn-ctn {
   margin-top: 1rem;
 }

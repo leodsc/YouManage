@@ -2,6 +2,7 @@
   <h2 class="modal--title">Adicionar Novo Funcionário</h2>
   <form action="">
     <label for="name">
+      <div title="Nome é um campo obrigatório!" class="required">*</div>
       <input
         [(ngModel)]="employee.name"
         placeholder="Nome"
@@ -11,6 +12,7 @@
       />
     </label>
     <label for="salary">
+      <div title="Salário é um campo obrigatório" class="required">*</div>
       <input
         [(ngModel)]="employee.salary"
         placeholder="Salário"
@@ -20,6 +22,7 @@
       />
     </label>
     <label for="email">
+      <div title="Email é um campo obrigatório" class="required">*</div>
       <input
         [(ngModel)]="employee.email"
         placeholder="Email"
@@ -56,6 +59,7 @@
       />
     </label>
     <label for="department">
+      <div title="Departamento é um campo obrigatório" class="required">*</div>
       <input
         [(ngModel)]="employee.department"
         placeholder="Departamento"
@@ -105,4 +109,4 @@
     </button>
   </div>
 </div>
-<div class="hide-background-content"></div>
+<div (click)="sendModalStatus('')" class="hide-background-content"></div>

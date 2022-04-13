@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  HostListener,
+  Directive,
+} from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { Employee } from 'src/app/models/Employee';
 import { Manager } from 'src/app/models/Manager';

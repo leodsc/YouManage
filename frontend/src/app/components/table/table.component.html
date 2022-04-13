@@ -27,7 +27,8 @@
       >
         <input
           #rowInput
-          [class.id]="employeesIds[i]"
+          (change)="checkEmployee($event)"
+          id="{{ employeesIds[i] }}"
           *ngIf="j === 0"
           type="checkbox"
         />
