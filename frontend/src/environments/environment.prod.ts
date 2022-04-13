@@ -11,7 +11,8 @@ export const environment: {
   currentIconOpen: '',
   token: '',
   resolution: window.innerWidth,
-  server: 'http://localhost:8080/',
+  server: 'https://you-manage.herokuapp.com/',
+  // server: 'http://localhost:8080/',
   id: -1,
   name: '',
 };

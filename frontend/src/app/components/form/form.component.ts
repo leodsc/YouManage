@@ -77,6 +77,7 @@ export class FormComponent implements OnInit {
         environment.token = resp.token;
         environment.id = resp.id;
         environment.name = resp.name;
+        console.log(resp.id);
         this.router.navigate(['/home']);
       },
       (error) => {
@@ -91,7 +92,11 @@ export class FormComponent implements OnInit {
   create = () => {
     this.auth.create(this.manager).subscribe(
       (resp: Manager) => {
-        Message.setProperties('Gerente criado!', 5000, Colors.SUCCESS);
+        Message.setProperties(
+          `Gerente ${resp.name} criado!`,
+          5000,
+          Colors.SUCCESS
+        );
       },
       (error) => {
         Message.setProperties(error.message, 5000, Colors.DANGER);

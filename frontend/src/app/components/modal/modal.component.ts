@@ -39,7 +39,7 @@ export class ModalComponent implements OnInit {
     this.employee.email = faker.internet.email();
     this.employee.manager = new Manager();
     this.employee.manager.id = environment.id;
-    console.log(environment.token);
+    console.log(this.employee);
     this.employeeService.create(this.employee).subscribe(
       (resp: Employee) => {
         this.employee = resp;
