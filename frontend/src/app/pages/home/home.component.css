@@ -31,3 +31,42 @@ header {
   display: flex;
   gap: 5rem;
 }
+
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 70px;
+}
+
+.bar-line {
+  height: 5px;
+  width: 30px;
+  border-radius: 5px;
+  background-color: #212121;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    top: 65px;
+    padding: 1rem;
+  }
+
+  .btn-ctn {
+    gap: 1rem;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) {
+  nav {
+    display: flex;
+    gap: 1rem;
+  }
+}

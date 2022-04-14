@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/Employee';
 import { Manager } from 'src/app/models/Manager';
@@ -20,11 +25,17 @@ export class HomeComponent implements OnInit {
   ) {}
 
   menuOpen: boolean = false;
-  resolution: number = environment.resolution;
+  resolution: number;
   showModal: boolean = false;
+  showNav: boolean = false;
 
   totalEmployees?: number;
   listOfEmployeesToDelete: Employee[] = [];
+  @HostListener('window:resize', ['$event'])
+  onResize(event: MouseEvent) {
+    this.resolution = window.innerWidth;
+    this.showNav = this.resolution > 768 ? true : false;
+  }
 
   ngOnInit(): void {
     if (environment.token === '') {
@@ -35,6 +46,10 @@ export class HomeComponent implements OnInit {
       this.employeeService.employees.subscribe((resp: Employee[]) => {
         this.totalEmployees = resp.length;
       });
+      this.resolution = window.innerWidth;
+      if (this.resolution > 768) {
+        this.showNav = true;
+      }
     }
   }
 
@@ -53,6 +68,10 @@ export class HomeComponent implements OnInit {
   receiveModal(message: string) {
     // this.changeMessage(message);
     this.showModal = false;
+  }
+
+  toggleNav() {
+    this.showNav = !this.showNav;
   }
 
   modal() {

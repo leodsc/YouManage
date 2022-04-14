@@ -77,7 +77,6 @@ export class FormComponent implements OnInit {
         environment.token = resp.token;
         environment.id = resp.id;
         environment.name = resp.name;
-        console.log(resp.id);
         this.router.navigate(['/home']);
       },
       (error) => {

@@ -27,7 +27,6 @@ import { DateTransformPipe } from './pipes/date-transform.pipe';
     HomeComponent,
     FormComponent,
     MessageComponent,
-    HomeComponent,
     MenuComponent,
     NavigationComponent,
     TableComponent,

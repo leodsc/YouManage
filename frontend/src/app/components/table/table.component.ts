@@ -69,7 +69,6 @@ export class TableComponent extends Message implements OnInit {
 
   getAllEmployees() {
     this.employeeService.getAll().subscribe((resp: Employee[]) => {
-      console.log(resp);
       // arrumar bug depois
       resp.forEach((employee) => {
         employee.hiringDate = fixDate(employee.hiringDate);
@@ -123,7 +122,6 @@ export class TableComponent extends Message implements OnInit {
   }
 
   addNewEmployee() {
-    console.log('oi');
     this.modalContent.title = 'Adicionar novo card';
     this.showModal = !this.showModal;
   }

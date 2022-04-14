@@ -8,12 +8,23 @@
       alt=""
     />
   </button> -->
-  <div *ngIf="resolution > 992" class="btn-ctn">
-    <button class="btn-success__style-1" (click)="modal()">Adicionar</button>
-    <button class="btn-danger__style-1" (click)="deleteEmployee()">
-      Excluir
+  <div class="btn-ctn btn-ctn-header">
+    <button
+      class="menu-btn"
+      *ngIf="this.resolution <= 768"
+      (click)="toggleNav()"
+    >
+      <div class="bar-line"></div>
+      <div class="bar-line"></div>
+      <div class="bar-line"></div>
     </button>
-    <button class="btn-info__style-1" (click)="logout()">Sair</button>
+    <nav *ngIf="showNav">
+      <button class="btn-success__style-1" (click)="modal()">Adicionar</button>
+      <button class="btn-danger__style-1" (click)="deleteEmployee()">
+        Excluir
+      </button>
+      <button class="btn-info__style-1" (click)="logout()">Sair</button>
+    </nav>
   </div>
   <h1 class="header--title">Funcionários</h1>
   <p class="header--total-employee">{{ totalEmployees }}</p>
