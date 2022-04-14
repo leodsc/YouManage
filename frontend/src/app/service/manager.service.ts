@@ -13,11 +13,4 @@ export class ManagerService {
   });
 
   constructor(private http: HttpClient) {}
-
-  deleteEmployee(employees: Employee[]): Observable<string[]> {
-    return this.http.delete<string[]>(environment.server + 'delete/employee', {
-      headers: this.headers,
-      body: employees,
-    });
-  }
 }

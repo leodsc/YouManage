@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,11 +50,15 @@ public class EmployeeService {
                 }).orElseThrow(EmployeeNotFoundException::new);
     }
 
-    public HttpStatus delete(Long id) {
-        repo.findById(id)
-                .ifPresent(
-                        employee -> repo.delete(employee)
-                );
-        return HttpStatus.OK;
+    public ResponseEntity<List<EmployeeModel>> deleteEmployee(List<EmployeeModel> employees) {
+        ArrayList<EmployeeModel> dbEmployees = new ArrayList<EmployeeModel>();
+        employees.forEach((employee) -> {
+            repo.findById(employee.getId())
+                    .ifPresent((emp) -> {
+                        dbEmployees.add(emp);
+                        repo.delete(emp);
+                    });
+        });
+        return ResponseEntity.ok(repo.findAll());
     }
 }

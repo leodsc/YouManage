@@ -4,8 +4,12 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  Input,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { faker } from '@faker-js/faker';
+import { fixDate } from 'src/app/app.component';
 import { Message } from 'src/app/classes/Message';
 import Options from 'src/app/classes/Options';
 import { Employee } from 'src/app/models/Employee';
@@ -23,27 +27,34 @@ export class TableComponent extends Message implements OnInit {
     title: '',
   };
   rowsSelected: any;
-  EMPLOYEES_PER_PAGE = 10;
+  private readonly EMPLOYEES_PER_PAGE = 10;
   lines: number[] = Array(10).fill(0);
   columnsName: string[] = Object.values(Options);
   data: any[][] = [[]];
+
   currentPage: number = 1;
   totalPages: number = Math.ceil(this.data.length / this.EMPLOYEES_PER_PAGE);
   pages: number[] = Array(this.totalPages)
     .fill(0)
     .map((_, index) => index + 1);
+
   totalEmployees: number;
-  employees: any[] = [];
-  employeesIds: any[] = [];
+  objectKeys = Object.keys;
+  objectEntries = Object.entries;
   objectValues = Object.values;
   isClicked: boolean = false;
 
+  allEmployeesSelected: boolean = false;
+  employees: Employee[];
   @Output() totalEmployeesEvent = new EventEmitter<number>();
-  @ViewChild('#rowInput') rowInput: any;
+  @ViewChild('selectAllEmployees') selectAllEmployees: any;
+  @ViewChildren('rowInput') rowInputs: QueryList<Input>;
   @Output() deleteEmployeeEvent = new EventEmitter<{
     id: number;
+    name: string;
     checked: boolean;
   }>();
+  @Output() deleteAllEmployeesEvent = new EventEmitter<boolean>();
 
   constructor(
     private dataService: DataService,
@@ -53,20 +64,27 @@ export class TableComponent extends Message implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sendTotalEmployees();
-    this.dataService.listenToWindowWidth();
-    this.employeeService.getAll().subscribe((resp: Employee[]) => {
-      resp.forEach((employee) => {
-        this.employeesIds.push(employee.id);
-        delete employee.id;
-        this.employees.push(employee);
-      });
-      this.totalEmployees = this.employees.length - 1;
-    });
+    this.getAllEmployees();
   }
 
-  sendTotalEmployees() {
-    this.totalEmployeesEvent.emit(this.totalEmployees);
+  getAllEmployees() {
+    this.employeeService.getAll().subscribe((resp: Employee[]) => {
+      console.log(resp);
+      // arrumar bug depois
+      resp.forEach((employee) => {
+        employee.hiringDate = fixDate(employee.hiringDate);
+      });
+      this.employees = resp;
+      this.totalEmployees = this.employees.length;
+      this.employeeService.employees.next(resp);
+      this.employeeService.employees.subscribe((resp: Employee[]) => {
+        this.employees = resp;
+        const input = this.selectAllEmployees.nativeElement;
+        if (input.checked) {
+          input.checked = false;
+        }
+      });
+    });
   }
 
   loadData(): any[][] {
@@ -78,11 +96,12 @@ export class TableComponent extends Message implements OnInit {
 
     faker.setLocale('pt_BR');
     for (let i = 0; i < 29; i++) {
+      const name = faker.name.findName(undefined, undefined);
       data.push([
-        faker.name.findName(undefined, undefined),
+        name,
         'R$ ' + String(faker.finance.amount(SALARIO_MINIMO, SALARIO_MAXIMO)),
         faker.phone.phoneNumber(PHONE_FORMAT),
-        faker.internet.email(),
+        faker.internet.email(name.split(' ')[0], name.split(' ')[1]),
         faker.address.cityName(),
         faker.datatype.number(CPF_MIN),
         faker.commerce.department(),
@@ -92,9 +111,11 @@ export class TableComponent extends Message implements OnInit {
   }
 
   clickAll() {
-    this.rowsSelected = 'all';
-    // console.log(this.rowInput);
-    // this.rowInput.nativeElement.setAttributes('checked');
+    this.allEmployeesSelected = !this.allEmployeesSelected;
+    this.rowInputs.forEach((input: any) => {
+      input.nativeElement.checked = this.allEmployeesSelected;
+    });
+    this.deleteAllEmployeesEvent.emit(this.allEmployeesSelected);
   }
 
   randomPhoto(): string {
@@ -102,6 +123,7 @@ export class TableComponent extends Message implements OnInit {
   }
 
   addNewEmployee() {
+    console.log('oi');
     this.modalContent.title = 'Adicionar novo card';
     this.showModal = !this.showModal;
   }
@@ -114,9 +136,11 @@ export class TableComponent extends Message implements OnInit {
   }
 
   checkEmployee($event: any) {
+    const checkbox = $event.target;
     this.deleteEmployeeEvent.emit({
-      id: $event.target.id,
-      checked: $event.target.checked,
+      id: Number(checkbox.id),
+      name: checkbox.getAttribute('data-employee-name'),
+      checked: checkbox.checked,
     });
   }
 }

@@ -25,6 +25,7 @@
 <main class="home-page">
   <app-navigation [menuOpen]="menuOpen"></app-navigation>
   <app-table
+    (deleteAllEmployeesEvent)="receiveDeleteAllEmployees($event)"
     (deleteEmployeeEvent)="receiveEmployeeToDelete($event)"
     (totalEmployeesEvent)="receiveTotalEmployees($event)"
   ></app-table>

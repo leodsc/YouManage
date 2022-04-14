@@ -8,6 +8,7 @@ enum Options {
   Departamento = 'Departamento',
   Equipe = 'Equipe',
   Contratacao = 'Contratação',
+  Nascimento = 'Nascimento',
   Gerente = 'Gerente',
 }
 

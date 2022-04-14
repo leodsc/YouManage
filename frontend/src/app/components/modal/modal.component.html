@@ -36,6 +36,7 @@
         [(ngModel)]="employee.phone"
         placeholder="Telefone"
         type="number"
+        maxlength="14"
         id="phone"
         name="phone"
       />
@@ -51,9 +52,10 @@
     </label>
     <label for="cpf">
       <input
+        (keydown)="formatCpf($event)"
         [(ngModel)]="employee.cpf"
         placeholder="CPF"
-        type="number"
+        maxlength="14"
         id="cpf"
         name="cpf"
       />
@@ -79,6 +81,13 @@
     </label>
     <label for="hiringDate">
       Data de Contratação
+      <div
+        style="top: 30px"
+        title="Data de Contratação é um campo obrigatório"
+        class="required"
+      >
+        *
+      </div>
       <input
         [(ngModel)]="employee.hiringDate"
         type="date"

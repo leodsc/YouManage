@@ -4,6 +4,7 @@ import com.manageme.exceptions.ManagerAlreadyExistsException;
 import com.manageme.exceptions.ManagerDoesntExistException;
 import com.manageme.model.ManagerModel;
 import com.manageme.repository.ManagerRepository;
+import com.manageme.model.EmployeeModel;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 

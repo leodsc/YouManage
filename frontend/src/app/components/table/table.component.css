@@ -17,12 +17,19 @@ section {
 
 tr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 th {
-  padding: 0.7rem;
+  padding: 1rem;
   color: #667085;
   font-weight: 500;
+  text-align: left;
+}
+
+.th-input {
+  display: flex;
+  gap: 0.5rem;
 }
 
 input[type="checkbox"] {
@@ -44,6 +51,7 @@ input[type="checkbox"] {
 
 .data-cell {
   padding: 1rem;
+  text-align: left;
 }
 
 .data-cell:not(.name) {

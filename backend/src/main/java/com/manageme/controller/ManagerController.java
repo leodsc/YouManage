@@ -3,12 +3,12 @@ package com.manageme.controller;
 import com.manageme.exceptions.ManagerAlreadyExistsException;
 import com.manageme.exceptions.ManagerDoesntExistException;
 import com.manageme.model.ManagerModel;
+import com.manageme.model.EmployeeModel;
 import com.manageme.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -61,7 +61,4 @@ public class ManagerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-
-//    @DeleteMapping("/employee")
-//    public ResponseEntity<List<Emplo>>
 }

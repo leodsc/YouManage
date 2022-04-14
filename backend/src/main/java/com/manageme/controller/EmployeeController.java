@@ -30,7 +30,6 @@ public class EmployeeController {
     @PostMapping("/create")
     public ResponseEntity<EmployeeModel> createEmployee(@RequestBody EmployeeModel employee) {
         try {
-            System.out.println("oi");
             HttpStatus status = employeeService.create(employee);
             return ResponseEntity.status(status).body(employee);
         } catch (EmailAlreadyExistsException e) {
@@ -47,8 +46,8 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public HttpStatus deleteEmployee(@PathVariable Long id) {
-        return employeeService.delete(id);
+    @DeleteMapping
+    public ResponseEntity<List<EmployeeModel>> deleteEmployees(@RequestBody List<EmployeeModel> employee) {
+        return this.employeeService.deleteEmployee(employee);
     }
 }

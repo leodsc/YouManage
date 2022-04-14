@@ -16,6 +16,9 @@ import { FormsModule } from '@angular/forms';
 import { TestComponent } from './pages/test/test.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ManagerDataPipe } from './pipes/manager-data.pipe';
+import { WageCurrencyPipe } from './pipes/wage-currency.pipe';
+import { DateTransformPipe } from './pipes/date-transform.pipe';
 
 @NgModule({
   declarations: [
@@ -31,10 +34,13 @@ import { ModalComponent } from './components/modal/modal.component';
     InputComponent,
     TestComponent,
     AvatarComponent,
-    ModalComponent
+    ModalComponent,
+    ManagerDataPipe,
+    WageCurrencyPipe,
+    DateTransformPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [{ provide: 'LOCALE_ID', useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

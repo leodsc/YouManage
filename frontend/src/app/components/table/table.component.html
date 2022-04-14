@@ -3,15 +3,24 @@
     <button class="special-btn" (click)="addNewEmployee()">Adicionar</button>
     <button class="special-btn" (click)="removeEmployee()">Excluir</button>
   </div>
-  <app-modal
+  <!-- <app-modal
+  (refreshEmployeesEvent)=""
     (closeModalEvent)="receiveModal($event)"
     *ngIf="showModal"
-  ></app-modal>
+  ></app-modal> -->
   <!-- <div *ngIf="message !== ''">{{ message }}</div> -->
   <table class="app--table">
     <tr class="table--column-name">
-      <th [class.flex]="column == 'Nome'" *ngFor="let column of columnsName">
-        <input (click)="clickAll()" *ngIf="column == 'Nome'" type="checkbox" />
+      <th
+        [class.th-input]="column == 'Nome'"
+        *ngFor="let column of columnsName"
+      >
+        <input
+          #selectAllEmployees
+          (change)="clickAll()"
+          *ngIf="column == 'Nome'"
+          type="checkbox"
+        />
         {{ column }}
       </th>
     </tr>
@@ -22,13 +31,14 @@
       <td
         style="width: 250px"
         class="data-cell"
-        *ngFor="let data of objectValues(employee); let j = index"
+        *ngFor="let data of objectValues(employee).slice(1); let j = index"
         [class.name]="j == 0"
       >
         <input
           #rowInput
           (change)="checkEmployee($event)"
-          id="{{ employeesIds[i] }}"
+          id="{{ objectEntries(employee)[0][1] }}"
+          attr.data-employee-name="{{ data }}"
           *ngIf="j === 0"
           type="checkbox"
         />
@@ -41,7 +51,14 @@
           alt=""
         /> -->
         <!-- <app-avatar *ngIf="j === 0" name="{{ content }}"></app-avatar> -->
-        {{ data }}
+        <p>
+          {{
+            data
+              | dateTransform: objectKeys(employee)[j + 1]
+              | wageCurrency: objectKeys(employee)[j + 1]
+              | managerData
+          }}
+        </p>
       </td>
     </tr>
   </table>

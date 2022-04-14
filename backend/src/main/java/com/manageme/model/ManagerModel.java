@@ -20,7 +20,7 @@ public class ManagerModel {
     @NotBlank
     private String password;
 
-    @OneToMany(mappedBy = "manager", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "manager", cascade=CascadeType.REMOVE)
     @JsonIgnoreProperties("manager")
     private List<EmployeeModel> employees;
 

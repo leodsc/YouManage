@@ -23,5 +23,5 @@ export class Employee {
 
   public birthday: Date;
 
-  public manager: Manager;
+  public manager: Manager = new Manager();
 }

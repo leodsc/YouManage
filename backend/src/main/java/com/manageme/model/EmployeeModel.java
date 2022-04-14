@@ -27,7 +27,7 @@ public class EmployeeModel {
 
     private String address;
 
-    private Integer cpf;
+    private String cpf;
 
     @NotBlank
     private String department;
@@ -43,6 +43,7 @@ public class EmployeeModel {
 
     @NotBlank
     @ManyToOne
+    @JsonIgnoreProperties("employees")
     private ManagerModel manager;
 
     public Long getId() {
@@ -93,11 +94,11 @@ public class EmployeeModel {
         this.address = address;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -131,6 +132,14 @@ public class EmployeeModel {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public ManagerModel getManager() {
+        return manager;
+    }
+
+    public void setManager(ManagerModel manager) {
+        this.manager = manager;
     }
 
 }

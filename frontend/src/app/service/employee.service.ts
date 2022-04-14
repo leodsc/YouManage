@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Employee } from '../models/Employee';
 
@@ -8,11 +8,15 @@ import { Employee } from '../models/Employee';
   providedIn: 'root',
 })
 export class EmployeeService {
+  public employees: BehaviorSubject<Employee[]> = new BehaviorSubject<
+    Employee[]
+  >([new Employee()]);
+
   constructor(private http: HttpClient) {}
 
-  headers = {
+  headers = new HttpHeaders({
     Authorization: environment.token,
-  };
+  });
 
   getAll(): Observable<Employee[]> {
     return this.http.get<Employee[]>(environment.server + 'employee', {
@@ -26,5 +30,12 @@ export class EmployeeService {
       employee,
       { headers: { Authorization: environment.token } }
     );
+  }
+
+  deleteEmployee(employees: Employee[]): Observable<Employee[]> {
+    return this.http.delete<Employee[]>(environment.server + 'employee', {
+      headers: { Authorization: environment.token },
+      body: employees,
+    });
   }
 }
