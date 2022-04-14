@@ -50,6 +50,7 @@ public class ManagerService {
         String token = createBase64Token(manager);
 //        manager.setPassword("");
         dbManager.get().setToken("Basic " + token);
+        repo.save(dbManager.get());
         return ResponseEntity.ok().body(dbManager.get());
     }
 

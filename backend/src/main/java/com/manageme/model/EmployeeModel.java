@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
-@Entity
+@Entity(name="employee")
 public class EmployeeModel {
 
     @Id

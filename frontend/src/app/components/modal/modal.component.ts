@@ -55,8 +55,8 @@ export class ModalComponent implements OnInit {
       this.employee.name === undefined ||
       this.employee.email === undefined ||
       this.employee.salary === undefined ||
-      this.employee.department === undefined ||
-      this.employee.hiringDate === undefined
+      this.employee.department === undefined
+      // || this.employee.hiringDate === undefined
     );
   }
 
@@ -66,6 +66,8 @@ export class ModalComponent implements OnInit {
     // this.employee.hiringDate = fixDate(this.employee.hiringDate);
     // console.log(this.employee.hiringDate);
     // this.employee.hiringDate = this.fixDate(this.employee.hiringDate);
+    // this.employee.hiringDate = new Date(this.employee.hiringDate);
+    // this.employee.hiringDate = date.toISOString(); // convert to UTC
     if (this.checkNullData()) {
       alert(
         'Os campos abaixo não podem ficar em branco!\nNome\nEmail\nSalário\nDepartamento\nData de contratação'

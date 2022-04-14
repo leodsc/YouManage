@@ -22,9 +22,8 @@ public class EmployeeController {
     public EmployeeService employeeService;
 
     @GetMapping
-    public List<EmployeeModel> getAllEmployees() {
-        System.out.println("oi");
-        return employeeService.getAll();
+    public List<EmployeeModel> getAllEmployees(@RequestHeader("Authorization") String auth) {
+        return employeeService.getAll(auth);
     }
 
     @PostMapping("/create")

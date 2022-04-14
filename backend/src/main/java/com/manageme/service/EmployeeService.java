@@ -19,8 +19,8 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository repo;
 
-    public List<EmployeeModel> getAll() {
-        return repo.findAll();
+    public List<EmployeeModel> getAll(String auth) {
+        return repo.findEmployeesByManagerToken(auth);
     }
 
     public HttpStatus create(EmployeeModel employee) throws EmailAlreadyExistsException {
