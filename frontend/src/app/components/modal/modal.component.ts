@@ -55,8 +55,8 @@ export class ModalComponent implements OnInit {
       this.employee.name === undefined ||
       this.employee.email === undefined ||
       this.employee.salary === undefined ||
-      this.employee.department === undefined
-      // || this.employee.hiringDate === undefined
+      this.employee.department === undefined ||
+      this.employee.hiringDate === undefined
     );
   }
 
