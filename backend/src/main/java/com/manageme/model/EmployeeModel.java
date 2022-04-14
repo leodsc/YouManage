@@ -34,11 +34,11 @@ public class EmployeeModel {
 
     private String team;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @NotBlank
     private Date hiringDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
 
     @NotBlank
