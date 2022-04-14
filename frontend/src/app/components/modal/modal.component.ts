@@ -62,12 +62,6 @@ export class ModalComponent implements OnInit {
 
   addEmployee() {
     // this.loadFakeData();
-    // this.employee.hiringDate = this.fixDate(this.employee.hiringDate);
-    // this.employee.hiringDate = fixDate(this.employee.hiringDate);
-    // console.log(this.employee.hiringDate);
-    // this.employee.hiringDate = this.fixDate(this.employee.hiringDate);
-    // this.employee.hiringDate = new Date(this.employee.hiringDate);
-    // this.employee.hiringDate = date.toISOString(); // convert to UTC
     if (this.checkNullData()) {
       alert(
         'Os campos abaixo não podem ficar em branco!\nNome\nEmail\nSalário\nDepartamento\nData de contratação'
@@ -78,6 +72,7 @@ export class ModalComponent implements OnInit {
       this.employeeService.create(this.employee).subscribe(
         (resp: Employee) => {
           const employeesArray = this.employeeService.employees.value;
+          resp.hiringDate = fixDate(resp.hiringDate);
           employeesArray.push(resp);
           console.log(resp.manager);
           this.employeeService.employees.next(employeesArray);

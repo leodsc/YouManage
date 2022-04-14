@@ -99,7 +99,8 @@ export class FormComponent implements OnInit {
         );
       },
       (error) => {
-        Message.setProperties(error.message, 5000, Colors.DANGER);
+        if (error.status == 409)
+          Message.setProperties('Gerente já existe!', 5000, Colors.DANGER);
       }
     );
     this.messageEvent.emit();
