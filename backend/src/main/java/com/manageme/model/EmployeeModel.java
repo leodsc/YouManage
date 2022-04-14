@@ -1,5 +1,6 @@
 package com.manageme.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
@@ -35,10 +36,12 @@ public class EmployeeModel {
     private String team;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd")
     @NotBlank
     private Date hiringDate;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date birthday;
 
     @NotBlank
